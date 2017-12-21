@@ -85,6 +85,7 @@ int main(int argc, char* argv[])
             case 1:
             {
                 cout << endl;
+
                 for (i = 0; i < x; i++)
                 {
                     for (j = 0; j < y; j++)
@@ -102,6 +103,7 @@ int main(int argc, char* argv[])
                 cout << endl;
                 cout << "Введите элементы матрицы размера " << x << "*" << y << endl;
                 int arroper[x][y];
+
                 for (i = 0; i < x; i++)
                 {
                     for (j = 0; j < y; j++)
@@ -141,6 +143,7 @@ int main(int argc, char* argv[])
                 cout << "Введите элементы матрицы размера " << m << "*" << n << endl;
 
                 int arroper[m][n];
+
                 for (j = 0; j < m; j++)
                 {
                     for (int q = 0; q < n; q++)
@@ -150,6 +153,7 @@ int main(int argc, char* argv[])
                 }
 
                 int arroper2[x][n];
+
                 for (i = 0; i < x; i++)
                 {
                     for (int q = 0; q < n; q++)
@@ -248,7 +252,7 @@ int main(int argc, char* argv[])
             case 7:
             {
                 char z;
-                cout << "\nВыберите порядок сортировки\n";
+                cout << "\nВыберите порядок сортировки:\t s-змейка, е-улитка, a-реверс\n";
                 cin >> z;
 
                 if (z == 's')
@@ -274,6 +278,94 @@ int main(int argc, char* argv[])
                         cout << endl;
                     }
                 }
+
+
+                if (z == 'a')
+                {
+                    for (i = 0; i < x; i++)
+                    {
+                        for (j = 0; j < y / 2; j++)
+                        {
+                            swap(arr[i][j], arr[i][y - j - 1]);
+                        }
+                    }
+
+                    for (i = 0; i < x / 2; i++)
+                    {
+                        for (j = 0; j < y; j++)
+                        {
+                            swap(arr[i][j], arr[x - i - 1][j]);
+                        }
+                    }
+                }
+
+                if (z == 'e')
+                {
+                    int* t = new int;
+                    for (int k = 1; k < x * y + 1; k++)
+                    {
+                        if (i == *t && j != y - 1 - *t)
+                        {
+                            arr[i][j] = k;
+                            j++;
+                            continue;
+                        }
+                        if (i == *t && j == y - 1 - *t)
+                        {
+                            arr[i][j] = k;
+                            i++;
+                            continue;
+                        }
+                        if (j == y - 1 - *t && i != x - 1 - *t)
+                        {
+                            arr[i][j] = k;
+                            i++;
+                            continue;
+                        }
+                        if (j == y - 1 - *t && i == x - 1 - *t)
+                        {
+                            arr[i][j] = k;
+                            j--;
+                            continue;
+                        }
+                        if (i == x - 1 - *t && j != *t)
+                        {
+                            arr[i][j] = k;
+                            j--;
+                            continue;
+                        }
+                        if (i == x - 1 - *t && j == *t)
+                        {
+                            arr[i][j] = k;
+                            i--;
+                            continue;
+                        }
+                        if (j == *t && i != *t + 1)
+                        {
+                            arr[i][j] = k;
+                            i--;
+                            continue;
+                        }
+                        if (j == *t && i == *t + 1)
+                        {
+                            arr[i][j] = k;
+                            j++;
+                            t++;
+                            continue;
+                        }
+                        delete t;
+                    }
+                }
+
+                for (i = 0; i < x; i++)
+                {
+                    for (j = 0; j < y; j++)
+                    {
+                        cout << arr[i][j] << " ";
+                    }
+                    cout << endl;
+                }
+                break;
             }
 
 
